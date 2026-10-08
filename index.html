@@ -3,133 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bản Đồ Quyền Lực - V3.0 Full Acts</title>
+    <title>Đại Việt Hoàng Triều: Bản Đồ Quyền Lực (V5.0)</title>
     <style>
+        /* --- BIẾN SỐ MỸ HỌC CỔ PHONG --- */
         :root {
-            --bg-color: #161210;
-            --paper-texture: #e8dbbf;
+            --bg-color: #0d0a08;
+            --paper-texture: #e8dbbf; /* Màu giấy dó chủ đạo */
             --paper-dark: #bfa87a;
-            --text-color: #1e140f;
-            --accent-red: #8a0b0b;
-            --border-gold: #b38b47;
-            --shadow-deep: rgba(0, 0, 0, 0.8);
+            --text-color: #1e140f; /* Nâu sẫm, không dùng đen kịt */
+            --accent-red: #8a0b0b; /* Đỏ son */
+            --border-gold: #b38b47; /* Vàng kim loại cổ */
+            --shadow-deep: rgba(0, 0, 0, 0.9);
+            --font-serif: 'Georgia', 'Times New Roman', serif;
         }
 
+        /* --- RESET & CƠ BẢN --- */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: var(--font-serif);
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            background-image: radial-gradient(circle at center, #2e211b 0%, #0a0705 100%);
+            /* Bối cảnh nền mờ */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://www.hueworldheritage.org.vn/Uploads/images/Hoang%20thanh%20Hue.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
+        /* --- KHUNG GAME CHÍNH --- */
         #game-container {
             width: 100%;
-            max-width: 950px;
-            height: 90vh;
+            max-width: 1000px;
+            height: 95vh;
+            max-height: 700px;
             background: var(--paper-texture);
-            border: 6px solid transparent;
-            border-image: repeating-linear-gradient(45deg, var(--border-gold), var(--border-gold) 15px, #785a10 15px, #785a10 30px) 10;
-            box-shadow: 0 25px 60px var(--shadow-deep);
+            border: 8px solid transparent;
+            /* Viền họa tiết cung đình */
+            border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b38b47' fill-opacity='0.4'%3E%3Cpath d='M13.5 11.85l1.32-1.32c-1.45-1.45-3.24-2.12-5.18-2.12s-3.73.67-5.18 2.12l1.32 1.32c1.16-1.16 2.6-1.7 4.14-1.7 1.54 0 2.98.54 4.14 1.7zm-5.18 1.77c-.97 0-1.77.8-1.77 1.77s.8 1.77 1.77 1.77 1.77-.8 1.77-1.77-.8-1.77-1.77-1.77zm13.32 0c-.97 0-1.77.8-1.77 1.77s.8 1.77 1.77 1.77 1.77-.8 1.77-1.77-.8-1.77-1.77-1.77zm1.32 1.32l1.32-1.32c-1.45-1.45-3.24-2.12-5.18-2.12s-3.73.67-5.18 2.12l1.32 1.32c1.16-1.16 2.6-1.7 4.14-1.7 1.54 0 2.98.54 4.14 1.7zM15 15a1.77 1.77 0 1 0 0 3.54A1.77 1.77 0 0 0 15 15zm6.81-3.15l1.32-1.32C21.68 9.08 19.89 8.41 17.95 8.41s-3.73.67-5.18 2.12l1.32 1.32c1.16-1.16 2.6-1.7 4.14-1.7 1.54 0 2.98.54 4.14 1.7z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 30 repeat;
+            box-shadow: 0 30px 70px var(--shadow-deep);
             display: flex;
             flex-direction: column;
             position: relative;
-            background-image: linear-gradient(rgba(232, 219, 191, 0.95), rgba(232, 219, 191, 0.95)), url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
         }
 
+        /* --- HEADER (QUYỀN MƯU) --- */
         header {
             border-bottom: 4px double var(--accent-red);
-            padding: 15px 30px;
+            padding: 10px 20px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.03);
+            background: rgba(179, 139, 71, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 1s ease;
         }
 
-        h1 {
-            font-size: 24px;
+        header h1 {
+            font-size: 20px;
             color: var(--accent-red);
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 3px;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
         }
 
         #hud-container {
             display: flex;
-            gap: 15px;
-            font-size: 15px;
+            gap: 10px;
+            font-size: 14px;
             font-weight: bold;
-            transition: opacity 1s;
         }
 
         .stat-item {
             background: var(--paper-dark);
-            padding: 6px 12px;
+            padding: 4px 8px;
             border: 1px solid #785a10;
             border-radius: 2px;
             color: #111;
-            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        .sys-btn {
+        .control-btn {
             background: var(--accent-red);
             color: white;
             border: 1px solid #4a0000;
-            padding: 8px 15px;
+            padding: 4px 10px;
             cursor: pointer;
-            font-family: inherit;
-            font-size: 14px;
-            border-radius: 2px;
-            font-weight: bold;
+            font-family: var(--font-serif);
+            font-size: 13px;
+            margin-left: 5px;
         }
-        .sys-btn:hover { background: #5c0a0a; }
-        
-        .sleeve-btn {
-            background: #b38b47;
-            color: #111;
-        }
-        .sleeve-btn:hover { background: #8b6914; color: white; }
+        .control-btn:hover { background: #5c0a0a; }
 
+        /* --- KHUNG NHẬT KÝ CỐT TRUYỆN --- */
         #story-log {
             flex-grow: 1;
-            padding: 30px 40px;
+            padding: 20px 30px;
             overflow-y: auto;
             scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
         }
         
-        #story-log::-webkit-scrollbar { width: 8px; }
-        #story-log::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
-        #story-log::-webkit-scrollbar-thumb { background: var(--border-gold); }
-
         .scene-block {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             animation: fadeIn 0.8s ease-in;
-            border-bottom: 1px dashed rgba(179, 139, 71, 0.4);
-            padding-bottom: 30px;
+            border-bottom: 1px dashed rgba(179, 139, 71, 0.3);
+            padding-bottom: 20px;
         }
 
         .scene-title {
-            font-size: 22px;
+            font-size: 18px;
             color: var(--accent-red);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: bold;
-            border-left: 5px solid var(--accent-red);
-            padding-left: 15px;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 10px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .scene-text {
-            font-size: 18px;
-            line-height: 1.8;
-            white-space: pre-line;
+            font-size: 16px;
+            line-height: 1.7;
+            white-space: pre-line; /* Giữ nguyên xuống dòng trong data */
             text-align: justify;
         }
 
@@ -137,188 +137,152 @@
             font-style: italic;
             color: #5c0a0a;
             background: rgba(138, 11, 11, 0.05);
-            padding: 12px 18px;
-            border-left: 4px solid var(--accent-red);
+            padding: 8px 12px;
+            border-left: 3px solid var(--accent-red);
             display: block;
-            margin: 15px 0;
-            font-weight: bold;
+            margin: 10px 0;
         }
 
+        .highlight { color: var(--accent-red); font-weight: bold; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- BẢNG HÀNH ĐỘNG (LỰA CHỌN) --- */
         #action-panel {
-            padding: 20px 40px 30px 40px;
-            background: linear-gradient(to top, var(--paper-texture) 80%, rgba(232, 219, 191, 0));
-            border-top: 1px solid rgba(179, 139, 71, 0.3);
+            padding: 15px 30px 25px 30px;
+            background: linear-gradient(to top, var(--paper-texture) 85%, rgba(232, 219, 191, 0));
+            border-top: 1px solid rgba(179, 139, 71, 0.2);
         }
 
         #choices-container {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
         .choice-btn {
             background: linear-gradient(to right, #f4ecd8, #e8dbbf);
             border: 1px solid var(--border-gold);
-            border-left: 6px solid var(--border-gold);
-            padding: 15px 20px;
+            border-left: 5px solid var(--border-gold);
+            padding: 10px 15px;
             text-align: left;
-            font-family: inherit;
-            font-size: 17px;
+            font-family: var(--font-serif);
+            font-size: 15px;
             color: var(--text-color);
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
         .choice-btn:hover {
             background: var(--accent-red);
             color: #fff;
-            border-left: 6px solid #4a0000;
-            transform: translateX(5px);
+            border-left: 5px solid #4a0000;
+            transform: translateX(3px);
+        }
+        .choice-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        /* Modal / Cẩm Nang */
-        #modal-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
+        /* --- CÁC MÀN HÌNH PHỤ (Intro, Tạo nhân vật) --- */
+        .screen-layout {
+            text-align: center; padding: 40px 30px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;
+            background-color: var(--paper-texture);
         }
-        #modal-content {
-            background: var(--paper-texture);
-            width: 80%;
-            max-height: 80%;
-            padding: 30px;
-            border: 4px solid var(--border-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            overflow-y: auto;
-            position: relative;
-        }
-        .modal-title {
-            color: var(--accent-red);
-            text-align: center;
-            font-size: 24px;
-            border-bottom: 2px solid var(--border-gold);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .term-box {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(0,0,0,0.05);
-            border-left: 3px solid var(--accent-red);
+        
+        .intro-text {
+            font-size: 18px; line-height: 1.8; max-width: 800px; margin: 0 auto 30px auto; text-align: justify; font-style: italic;
+            border: 2px solid var(--border-gold); padding: 30px; background: rgba(255,255,255,0.5);
         }
 
-        .dice-box {
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(189, 139, 71, 0.2);
-            border: 2px dashed var(--border-gold);
+        .input-group { margin: 15px auto; text-align: left; max-width: 400px; width: 100%; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--accent-red); font-size: 14px; }
+        .input-group input, .input-group select {
+            width: 100%; padding: 8px; font-size: 15px; border: 1px solid var(--border-gold); background: rgba(255,255,255,0.7); font-family: var(--font-serif);
         }
-        #dice-result {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--accent-red);
-            margin-top: 15px;
+        
+        .big-btn {
+            background: var(--accent-red); color: white; border: 2px solid #4a0000; padding: 12px 30px; cursor: pointer;
+            font-family: var(--font-serif); font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px;
         }
+        .big-btn:hover { background: #5c0a0a; }
 
         .hidden { display: none !important; }
-        .fade-out { opacity: 0; pointer-events: none; }
-        
-        .screen-layout {
-            text-align: center;
-            padding: 50px 40px;
-            height: 100%;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .input-group {
-            margin: 15px auto;
-            text-align: left;
-            max-width: 450px;
-            width: 100%;
-        }
-        .input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--accent-red); }
-        .input-group input, .input-group select {
-            width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--border-gold); background: rgba(255, 255, 255, 0.7); font-family: inherit;
-        }
     </style>
 </head>
 <body>
 
+    <!-- THẺ ÂM THANH (BẮT BUỘC THAY ĐỔI NGUỒN TỆP) -->
+    <!-- Nhạc Intro: Trầm mặc, định mệnh -->
+    <audio id="bgm-intro" loop>
+        <source src="nhac_nen_intro.mp3" type="audio/mp3">
+    </audio>
+    <!-- Nhạc Game chính: Căng thẳng, quyền mưu -->
+    <audio id="bgm-game" loop>
+        <source src="nhac_nen_game.mp3" type="audio/mp3">
+    </audio>
+
     <div id="game-container">
         
-        <!-- MÀN HÌNH KHỞI TẠO -->
-        <div id="creation-screen" class="screen-layout">
-            <h1 style="font-size: 36px; color: var(--accent-red); margin-bottom: 5px;">BẢN ĐỒ QUYỀN LỰC</h1>
-            <h3 style="margin-top: 0; color: #555;">Kỷ Nguyên Đẫm Máu (Full Acts)</h3>
+        <!-- 1. MÀN HÌNH INTRO TRIẾT LÝ -->
+        <div id="intro-screen" class="screen-layout">
+            <div class="intro-text">
+                "Cõi thế tang thương, lòng người hiểm ác. Xưa Trạng Trình từng để lại lời sấm về cờ thế nhân gian, rằng giang sơn dẫu vững cũng có lúc xoay vần bởi lòng tham và quyền lực.
+                
+                Đại Việt, năm Gia Hưng thứ mười hai. Khi Tiên Đế băng hà, ngai vàng bỏ trống, triều đình Huế chìm trong lớp sương mù của những cuộc đấu đá ngầm giữa Lục Bộ, ngoại thích và võ tướng.
+                
+                Sách sử đời sau viết về các triều đại thường chỉ đọng lại ở hai chữ 'được - thua', nhưng kẻ đứng trong cuộc mới thấu hiểu cái giá của từng tấc giang sơn. Ngài bước chân vào chốn lầu son gác tía này, mang theo tham vọng gì?
+                
+                Hãy nhớ lấy quy luật muôn đời của thâm cung: Kẻ không biết nhìn trước ngó sau, sớm muộn cũng thành cọng rác bên vệ đường Cồn Tùng."
+            </div>
+            <button class="big-btn" onclick="showCreationScreen()">Mở Cửa Tử Cấm Thành</button>
+        </div>
+
+        <!-- 2. MÀN HÌNH TẠO NHÂN VẬT -->
+        <div id="creation-screen" class="screen-layout hidden">
+            <h1 style="font-size: 32px; color: var(--accent-red); margin-bottom: 10px;">ĐẠI VIỆT HOÀNG TRIỀU</h1>
+            <h2 style="margin-top: 0; color: #785a10; font-size: 18px; font-weight: normal;">Bản Đồ Quyền Lực - Kỷ Nguyên Đẫm Máu</h2>
             
-            <div class="input-group">
+            <div class="input-group" style="margin-top: 30px;">
                 <label>Danh xưng của Đại nhân:</label>
-                <input type="text" id="player-name" value="Minh Huy">
+                <input type="text" id="player-name" value="Ngô Hoàng Minh Huy" placeholder="Nhập tên...">
             </div>
             <div class="input-group">
-                <label>Nguồn cội gia tộc:</label>
+                <label>Nguồn cội gia tộc (Chọn thế lực hậu thuẫn):</label>
                 <select id="player-region">
-                    <option value="Quảng Nam">Đất Quảng Nam (Thương cảng, dồi dào tài lực)</option>
-                    <option value="Bắc Hà">Đất Bắc Hà (Sĩ Phu, giỏi thao túng tai mắt)</option>
-                    <option value="Gia Định">Đất Gia Định (Võ Tướng, hào sảng thực dụng)</option>
+                    <option value="Quảng Nam">Đất Quảng Nam (Thương cảng trù phú - Khởi đầu dồi dào tài lực)</option>
+                    <option value="Bắc Hà">Đất Bắc Hà (Gốc rễ Sĩ phu thâm sâu - Khởi đầu uy quyền cao)</option>
+                    <option value="Gia Định">Đất Gia Định (Võ tướng hào sảng - Ít bị nghi kỵ hơn)</option>
                 </select>
             </div>
             
-            <button class="sys-btn" style="font-size: 18px; padding: 15px 40px; margin-top: 20px;" onclick="showIntro()">XÁC NHẬN THÂN THẾ</button>
-            <button class="sys-btn" style="background: #333; margin-top: 15px;" onclick="loadGame()">TẢI LẠI TIẾN TRÌNH CŨ</button>
+            <button class="big-btn" onclick="startGame()">Bắt đầu Nhiếp Chính</button>
         </div>
 
-        <!-- MÀN HÌNH INTRO -->
-        <div id="intro-screen" class="screen-layout hidden">
-            <h2 style="color: var(--accent-red);">THIÊN MỆNH CHƯA ĐỊNH</h2>
-            <p style="font-size: 18px; line-height: 1.8; text-align: justify; padding: 0 20px;">
-                Đại Việt, năm Gia Hưng thứ mười hai.<br><br>
-                Trần đời có ba thứ không thể nhìn trực diện: Mặt trời, lòng người, và ngai vàng. Ngài bước chân vào chốn quan trường, mang theo tham vọng bóp nát Lục Bộ, dẫm lên vạn xác người để đứng trên đài cao.<br><br>
-                Nhưng trước khi đẩy cửa bước vào Đêm Mưa Tử Cấm Thành, hãy đọc kỹ những luật lệ sinh tử chốn thâm cung này. Hãy giấu nó vào trong ống tay áo áo mãng bào của ngài.
-            </p>
-            <button class="sys-btn sleeve-btn" style="font-size: 18px; padding: 15px 40px; margin-top: 20px;" onclick="openGlossary('intro')">📖 MỞ CẨM NANG TRIỀU CHÍNH</button>
-        </div>
-
-        <!-- MÀN HÌNH CHƠI GAME CHÍNH -->
+        <!-- 3. GIAO DIỆN GAME CHÍNH -->
         <div id="game-screen" class="hidden" style="display: flex; flex-direction: column; height: 100%;">
-            <header id="main-header">
+            <header>
                 <h1>BẢN ĐỒ QUYỀN LỰC</h1>
                 <div id="hud-container">
-                    <div class="stat-item">🪙 <span id="stat-gold">0</span></div>
-                    <div class="stat-item">📜 <span id="stat-power">0</span></div>
-                    <div class="stat-item">👑 <span id="stat-role">Lang Trung</span></div>
+                    <div class="stat-item">🪙 Vàng: <span id="stat-gold">0</span></div>
+                    <div class="stat-item">📜 Uy quyền: <span id="stat-power">0</span></div>
+                    <div class="stat-item">👑 Vai vế: <span id="stat-role">Lang Trung</span></div>
                 </div>
                 <div>
-                    <button class="sys-btn sleeve-btn" onclick="openGlossary('game')">Lục tay áo</button>
-                    <button class="sys-btn" onclick="saveGame()">Lưu</button>
+                    <button class="control-btn" onclick="toggleAudio()" id="audio-toggle-btn">🔇 Bật Nhạc</button>
+                    <button class="control-btn" onclick="resetGame()">Chơi Lại</button>
                 </div>
             </header>
 
-            <div id="story-log"></div>
-            <div id="action-panel">
-                <div id="choices-container"></div>
+            <!-- Khu vực hiển thị cốt truyện -->
+            <div id="story-log">
+                <!-- Các đoạn scene sẽ được thêm vào đây -->
             </div>
-        </div>
 
-        <!-- POPUP CẨM NANG -->
-        <div id="modal-overlay" class="hidden">
-            <div id="modal-content">
-                <div class="modal-title">CẨM NANG BẢN ĐỒ QUYỀN LỰC</div>
-                
-                <h3 style="color: #4a0000;">I. Hệ thống Chỉ số & Cơ chế</h3>
-                <div class="term-box"><b>🪙 Ngân Khố (Vàng):</b> Dùng để hối lộ, nuôi tai mắt, cứu người.</div>
-                <div class="term-box"><b>📜 Uy Quyền:</b> Sự nể sợ của bá quan.</div>
-                <div class="term-box"><b>🌑 Chế độ No-HUD (Act 4):</b> Ở Act cuối, toàn bộ bảng chỉ số sẽ biến mất. Ngài phải tự quyết định bằng lý trí và ký ức!</div>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <button class="sys-btn sleeve-btn" style="font-size: 18px; padding: 10px 30px;" onclick="closeGlossary()">BỎ CẨM NANG VÀO TAY ÁO</button>
+            <!-- Khu vực lựa chọn -->
+            <div id="action-panel">
+                <div id="choices-container">
+                    <!-- Các nút lựa chọn sẽ được render tại đây -->
                 </div>
             </div>
         </div>
@@ -326,297 +290,176 @@
     </div>
 
     <script>
+        /* --- STATE GAME --- */
         let gameState = {
-            playerName: "Minh Huy",
+            playerName: "Ngô Hoàng Minh Huy",
             region: "Quảng Nam",
-            wifeName: "Trần Thị Thuận",
-            gold: 300,
-            power: 20,
-            karma: 0, 
+            wifeName: "Trần Thị Thuận", // NPC vợ mặc định
+            gold: 0,
+            power: 0,
             role: "Lại Bộ Lang Trung",
             currentScene: "act1_start",
-            flags: { child_born: false, has_son: false, prince_saved: false, hud_disabled: false },
-            historyLog: [] 
+            flags: {
+                prince_saved: false,
+                loyal_general_met: false,
+                cao_loyal: false // Trung thành với Cao tổng quản
+            },
+            historyLog: [], // Lưu lịch sử các đoạn đã qua
+            audioEnabled: false
         };
 
-        let glossaryContext = "";
-        const SAVE_SLOT = "banDoQuyenLuc_SaveData_V3";
-
-        function showIntro() {
-            let nameInput = document.getElementById("player-name").value.trim();
-            if (nameInput !== "") gameState.playerName = nameInput;
-            gameState.region = document.getElementById("player-region").value;
-            document.getElementById("creation-screen").classList.add("hidden");
-            document.getElementById("intro-screen").classList.remove("hidden");
+        /* --- HÀM XỬ LÝ ÂM THANH --- */
+        function startIntroAudio() {
+            const audio = document.getElementById('bgm-intro');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Trình duyệt chặn autoplay", e));
+            gameState.audioEnabled = true;
         }
 
-        function startGameFromIntro() {
-            document.getElementById("intro-screen").classList.add("hidden");
-            document.getElementById("game-screen").classList.remove("hidden");
-            updateHUD();
-            renderScene("act1_start");
+        function showCreationScreen() {
+            document.getElementById('intro-screen').classList.add('hidden');
+            document.getElementById('creation-screen').classList.remove('hidden');
         }
 
-        function openGlossary(context) {
-            glossaryContext = context;
-            document.getElementById("modal-overlay").classList.remove("hidden");
-        }
+        function startGame() {
+            // Lấy dữ liệu người chơi
+            const nameInput = document.getElementById('player-name').value.trim();
+            if(nameInput !== "") gameState.playerName = nameInput;
+            gameState.region = document.getElementById('player-region').value;
 
-        function closeGlossary() {
-            document.getElementById("modal-overlay").classList.add("hidden");
-            if (glossaryContext === 'intro') {
-                startGameFromIntro();
+            // Thiết lập tài nguyên khởi đầu dựa trên vùng
+            if(gameState.region === "Quảng Nam") { gameState.gold = 300; gameState.power = 20; }
+            else if(gameState.region === "Bắc Hà") { gameState.gold = 150; gameState.power = 40; }
+            else if(gameState.region === "Gia Định") { gameState.gold = 200; gameState.power = 30; }
+
+            // Chuyển nhạc
+            document.getElementById('bgm-intro').pause();
+            if(gameState.audioEnabled) {
+                const gameAudio = document.getElementById('bgm-game');
+                gameAudio.volume = 0.4;
+                gameAudio.play();
             }
-        }
 
-        function saveGame() {
-            localStorage.setItem(SAVE_SLOT, JSON.stringify(gameState));
-            alert("Tiến trình đã được cất giấu an toàn!");
-        }
-
-        function loadGame() {
-            let savedData = localStorage.getItem(SAVE_SLOT);
-            if (savedData) {
-                gameState = JSON.parse(savedData);
-                document.getElementById("creation-screen").classList.add("hidden");
-                document.getElementById("intro-screen").classList.add("hidden");
-                document.getElementById("game-screen").classList.remove("hidden");
-                document.getElementById("story-log").innerHTML = ""; 
-                gameState.historyLog.forEach(htmlBlock => {
-                    document.getElementById("story-log").innerHTML += htmlBlock;
-                });
-                updateHUD();
-                renderChoices(gameState.currentScene);
-                scrollToBottom();
-            } else {
-                alert("Không tìm thấy tệp lưu nào!");
-            }
-        }
-
-        function updateHUD() {
-            if (gameState.flags.hud_disabled) {
-                document.getElementById("main-header").classList.add("fade-out");
-            } else {
-                document.getElementById("main-header").classList.remove("fade-out");
-                document.getElementById("stat-gold").innerText = gameState.gold;
-                document.getElementById("stat-power").innerText = gameState.power;
-                document.getElementById("stat-role").innerText = gameState.role;
-            }
-        }
-
-        function scrollToBottom() {
-            let log = document.getElementById("story-log");
-            log.scrollTop = log.scrollHeight;
-        }
-
-        function parseText(text) {
-            let parsed = text.replace(/{playerName}/g, gameState.playerName)
-                             .replace(/{wifeName}/g, gameState.wifeName)
-                             .replace(/{region}/g, gameState.region);
-            return parsed.normalize('NFC'); 
-        }
-
-        function rollDice() {
-            let resultBox = document.getElementById("dice-result");
-            let btn = document.getElementById("roll-btn");
-            btn.disabled = true;
-            btn.innerText = "Đang gieo quẻ...";
+            // Ẩn màn hình tạo, hiện game
+            document.getElementById('creation-screen').classList.add('hidden');
+            document.getElementById('game-screen').classList.remove('hidden');
             
-            let roll = 0;
-            let rollInterval = setInterval(() => {
-                roll = Math.floor(Math.random() * 6) + 1;
-                resultBox.innerText = "🎲 Đổ ra mặt: " + roll;
-            }, 100);
-
-            setTimeout(() => {
-                clearInterval(rollInterval);
-                gameState.flags.child_born = true;
-                if (roll >= 4) {
-                    gameState.flags.has_son = true;
-                    gameState.power += 30;
-                    resultBox.innerHTML = `🎲 Quẻ thượng thư: <b>Sinh hạ Đích tôn Minh Kiệt!</b><br><span style='color:green'>Uy quyền gia tộc tăng vọt (+30 Uy quyền).</span>`;
-                } else {
-                    gameState.gold += 100;
-                    resultBox.innerHTML = `🎲 Quẻ bình hòa: <b>Sinh hạ Ái nữ!</b><br><span style='color:green'>Bá quan kéo đến tặng lễ vật nườm nượp (+100 Vàng).</span>`;
-                }
-                updateHUD();
-                renderChoices("act1_hauvien_post");
-            }, 1500);
+            updateHUD();
+            renderScene(gameState.currentScene);
         }
 
-        // KỊCH BẢN TOÀN TẬP (ACT 1 ĐẾN ACT 4 & KẾT CỤC)
+        function toggleAudio() {
+            const introAudio = document.getElementById('bgm-intro');
+            const gameAudio = document.getElementById('bgm-game');
+            const btn = document.getElementById('audio-toggle-btn');
+
+            if (gameState.audioEnabled) {
+                introAudio.pause();
+                gameAudio.pause();
+                btn.innerText = "🔈 Bật Nhạc";
+                gameState.audioEnabled = false;
+            } else {
+                // Play nhạc tùy theo scene hiện tại
+                if(gameState.currentScene.startsWith('act1')) introAudio.play();
+                else gameAudio.play();
+                btn.innerText = "🔇 Tắt Nhạc";
+                gameState.audioEnabled = true;
+            }
+        }
+
+        function resetGame() {
+            if(confirm("Chơi lại từ đầu? Mọi tiến trình sẽ mất.")) {
+                localStorage.removeItem("vietnam_power_save");
+                location.reload();
+            }
+        }
+
+        /* --- CẬP NHẬT GIAO DIỆN --- */
+        function updateHUD() {
+            document.getElementById('stat-gold').innerText = gameState.gold;
+            document.getElementById('stat-power').innerText = gameState.power;
+            document.getElementById('stat-role').innerText = gameState.role;
+        }
+
+        /* --- CƠ SỞ DỮ LIỆU CỐT TRUYỆN (STORY DATA) --- */
         const storyData = {
             "act1_start": {
                 title: "ACT 1: ĐÊM MƯA TỬ CẤM THÀNH",
-                text: "Mưa rào quất xối xả. Tiên Đế băng hà. Khắp Tử Cấm Thành nặc mùi tử khí.\nNgài quỳ rạp bên ngoài rèm. Di chiếu truyền ngôi lăn từ chậu than ra sát gối ngài!\nTổng quản Cao Tấn Lộc giẫm mạnh lên vạt áo ngài, rít lên:\n<span class='dialogue'>'Khôn hồn thì đưa cho tạp gia, bằng không mai cả họ nhà ngài ra bãi tha ma nhé!'</span>",
+                text: "Mưa rào quất xối xả vào mái ngói lưu ly. Tiên Đế băng hà đột ngột tại Dưỡng Tâm Điện. Khắp Tử Cấm Thành nặc mùi tử khí và sự hoảng loạn.\n\nNgài, <span class='highlight'>{role} {playerName}</span>, đang quỳ trực bên ngoài rèm châu cùng Lục Bộ đại thần. Trong lúc hỗn loạn, một cuộn lụa vàng - Di Chiếu truyền ngôi - lăn từ chậu than ra sát hia của ngài!\n\nTổng quản Thái giám Cao Tấn Lộc liếc thấy, mắt hằn lên tia sát khí. Hắn rít qua kẽ răng:",
+                dialogue: "'Khôn hồn thì giao nộp cho tạp gia, bằng không ngày mai cả họ nhà ngươi thành món mồi cho cá sông Hương đấy!'",
                 choices: [
-                    { text: "Lén giấu Di chiếu, dúi thỏi vàng 100 lạng vào tay hắn.", next: "act1_survive" },
-                    { text: "Vờ luống cuống, gạt Di chiếu vào chậu than cho cháy rụi.", next: "act1_death" }
+                    { text: "A. Lén giấu Di chiếu vào ống tay áo, nhanh trí dúi thỏi vàng 100 lạng vào tay Cao tổng quản.", next: "act1_ bribe_success", action: () => { gameState.gold -= 100; gameState.power += 10; updateHUD(); } },
+                    { text: "B. Đứng dậy dõng dạc hô lớn, công khai Di chiếu cho bá quan văn võ.", next: "act1_proclaim" },
+                    { text: "C. Quỳ gối run rẩy, dâng ngay Di chiếu cho Cao Tổng Quản để bảo toàn tính mạng.", next: "act1_surrender_cao", action: () => { gameState.power -= 10; updateHUD(); } }
                 ]
             },
-            "act1_death": {
-                title: "TỬ CỤC: TRO TÀN LỊCH SỬ",
-                text: "Di chiếu mất. Ngài bị Cấm vệ lôi ra chém đầu ngay lập tức.",
-                choices: [{ text: "Bắt đầu lại...", action: () => location.reload() }]
-            },
-            "act1_survive": {
-                title: "ACT 1.5: ĐÊM Ở HẬU VIỆN",
-                text: "Sống sót qua đêm đẫm máu. Trở về phủ, nha hoàn hét lên: 'Phu nhân {wifeName} vỡ ối rồi!'\nNgài đứng chắp tay ngoài hiên, cầu khấn tổ tiên phù hộ độ trì.",
-                action: () => { gameState.gold -= 100; updateHUD(); },
+            "act1_bribe_success": {
+                title: "ACT 1.5: GIAO DỊCH NGẦM",
+                text: "Cao Tấn Lộc nhận vàng, ánh mắt dịu đi đôi chút. Hắn gật đầu ra hiệu cho ngài đứng dậy. Ngài đã tạm thời mua được sự im lặng của kẻ quyền lực nhất hậu cung, nhưng canh bạc chỉ mới bắt đầu.",
                 choices: [
-                    { text: "Gieo quẻ mai rùa xem sinh nam hay nữ (Đổ xúc xắc)", next: "act1_hauvien_dice" }
-                ]
-            },
-            "act1_hauvien_dice": {
-                title: "THỬ VẬN MỆNH CỐT NHỤC",
-                text: "Gieo quẻ định mệnh cho đứa con đầu lòng.\n\n<div class='dice-box'><button id='roll-btn' class='sys-btn sleeve-btn' style='font-size:18px; padding: 10px 20px;' onclick='rollDice()'>🎲 Gieo Quẻ Xúc Xắc</button><div id='dice-result'></div></div>",
-                choices: []
-            },
-            "act1_hauvien_post": {
-                text: "Tiếng trẻ con khóc ré lên xé toạc màn đêm. Mầm mống của quyền lực đã ra đời.",
-                choices: [
-                    { text: "Bước sang Act 2: Sương Mù Thâm Cung", next: "act2_start" }
+                    { text: "Tiếp tục...", next: "act2_start" }
                 ]
             },
             "act2_start": {
-                title: "ACT 2: KẺ PHẢN TRẮC BỘ HỘ",
-                text: "Bằng tiền bạc và mưu mô, ngài thăng lên chức **Thị Lang Bộ Lễ**. Nhưng đêm nay, **300 lạng vàng đã bốc hơi** khỏi mật thất.\n\nBa tên thuộc hạ quỳ gập gối:\n1. Trần Công: Quản lý sổ sách, mê cờ bạc.\n2. Lê Tín: Do Tể Tướng tiến cử, áo dính vệt bùn đỏ niêm phong rương vàng.\n3. Phạm Đăng: Từng vay tiền tiểu thái giám Thái Y Viện mua nhân sâm cho mẹ.\n\nNgài kề kiếm vào cổ ai?",
-                action: () => { gameState.role = "Thị Lang Bộ Lễ"; updateHUD(); },
+                title: "ACT 2: SÓNG NGẦM NƠI BỘ HỘ",
+                text: "Ba ngày sau tang lễ, tân vương chưa được lập, triều đình do Lưỡng Cung Thái Hậu nhiếp chính. Ngài trở về làm việc tại Bộ Hộ, nơi nắm giữ kho tàng quốc gia.\n\nThượng thư Bộ Hộ - phe cánh của Đại Đô Đốc Lê Văn Uy - triệu tập ngài. Hắn ta nghi ngờ ngài có dính líu đến vụ mất trộm 400 lạng vàng trong kho nội phủ đúng đêm Tiên Đế băng hà. Hắn lạnh lùng nói:\n\n'Bản quan đã tra xét kỹ. Kẻ cuối cùng rời kho chính là ngươi. Khai mau, ngươi đã đem số vàng đó hối lộ cho ai để mưu đồ phản nghịch?'",
                 choices: [
-                    { text: "Chém Trần Công (Kẻ cờ bạc).", next: "act2_fail" },
-                    { text: "Chém Lê Tín (Kẻ dính bùn đỏ).", next: "act2_fail" },
-                    { text: "Chém Phạm Đăng (Kẻ nợ ân tình Thái Giám).", next: "act2_success" }
+                    { text: "A. Chối bay chối biến, thề độc trước tổ tông và đổ tội cho tên lính gác đã chết.", next: "act2_shift_blame", condition: () => gameState.power >= 30 }, // Cần uy quyền để chối tội
+                    { text: "B. Nhận tội và khai rằng đã dùng số vàng đó để... tu sửa lăng tẩm Tiên Đế (cần chứng minh).", next: "act2_temple_lie", condition: () => gameState.gold >= 400 }, // Cần vàng để bịa chuyện
+                    { text: "C. Im lặng, âm thầm dùng 200 Vàng đút lót cho thư ký của Thượng thư để xóa tên mình khỏi sổ sách.", next: "act2_bribe_clerk", action: () => { gameState.gold -= 200; updateHUD(); } }
                 ]
             },
-            "act2_fail": {
-                title: "SAI LẦM CHÍ MẠNG",
-                text: "Ngài chém nhầm người! Kẻ phản bội tẩu tán số vàng. Ngân khố về 0 Vàng!",
+             "act2_shift_blame": {
+                title: "ACT 2 (KẾT): QUA MẶT BỘ HỘ",
+                text: "Với uy quyền sẵn có, ngài hùng hồn bẻ lại lời Thượng thư, khéo léo hướng sự nghi ngờ sang tên lính canh đã chết đêm đó. Thượng thư dù không tin nhưng cũng không muốn làm lớn chuyện khi tình hình đang rối ren. Ngài thoát tội nhưng bị giáng chức nhẹ.",
+                action: () => { gameState.role = "Lang Trung (Bị nghi kỵ)"; gameState.power -= 10; updateHUD(); },
+                choices: [ { text: "Tiếp tục...", next: "act3_start" } ]
+            },
+            "act2_temple_lie": {
+                title: "ACT 2 (KẾT): NÓI DỐI ĐỂ SỐNG",
+                text: "Ngài đành bấm bụng lấy 400 lạng vàng (thực chất là số vàng ngài đang giữ) nộp lại cho công quỹ và khai dối là dùng để tu sửa lăng. Thượng thư hài lòng vì thu hồi được của công. Ngài mất trắng số vàng nhưng giữ được mạng.",
                 action: () => { gameState.gold = 0; updateHUD(); },
-                choices: [{ text: "Bước tiếp vào thâm cung...", next: "act2_lainhcung" }]
+                choices: [ { text: "Tiếp tục...", next: "act3_start" } ]
             },
-            "act2_success": {
-                title: "THU HỒI TÀI SẢN",
-                text: "Chuẩn xác! Phạm Đăng bị Cao Tấn Lộc uy hiếp. Ngài thu hồi lại toàn bộ Vàng.",
-                action: () => { gameState.power += 15; updateHUD(); },
-                choices: [{ text: "Đi tiếp vào thâm cung...", next: "act2_lainhcung" }]
-            },
-            "act2_lainhcung": {
-                title: "ACT 2: HUYẾT THƯ LÃNH CUNG",
-                text: "Bà vú già mang huyết thư từ Thục Phi: Nàng đang mang giọt máu Tiên Đế, đêm mai sẽ bị ban rượu độc.\nCần đúng **400 Vàng** để thuê thuyền trốn về {region}.",
-                choices: [
-                    { text: "A. Chi 400 Vàng, lén lút cứu Thục Phi (Cần >= 400 Vàng).", next: "act3_start", condition: () => gameState.gold >= 400, action: () => { gameState.gold -= 400; gameState.flags.prince_saved = true; updateHUD(); } },
-                    { text: "B. Dâng huyết thư cho Thái Hậu để lấy lòng Hậu Cung.", next: "act3_start" }
-                ]
+            "act2_bribe_clerk": {
+                title: "ACT 2 (KẾT): XÓA DẤU VẾT",
+                text: "Ngài bí mật hối lộ thư ký, sửa lại sổ sách kho. Vụ việc 400 lạng vàng chìm vào quên lãng. Tuy nhiên, ngài nợ tên thư ký một ân huệ và có thể bị hắn tống tiền bất cứ lúc nào.",
+                action: () => { gameState.flags.blackmailed_by_clerk = true; updateHUD(); },
+                choices: [ { text: "Tiếp tục...", next: "act3_start" } ]
             },
             "act3_start": {
-                title: "ACT 3: TÁCH TRÀ SAU RÈM CHÂU",
-                text: "Lưỡng Cung Hoàng Thái Hậu gọi ngài vào cung Diên Thọ, cất giọng tàn độc:\n<span class='dialogue'>'{playerName} nì... Mi nghe rõ đây. Sáng mai mi tự tay thảo tờ sớ vạch tội Tể Tướng cho Ai gia. Mần được, ấn Tể Tướng là của mi. Không xong, bãi tha ma Cồn Tùng chờ nhà mi!'</span>",
-                action: () => { gameState.role = "Thượng Thư Bộ Lại"; updateHUD(); },
+                title: "ACT 3: HUYẾT THƯ LÃNH CUNG",
+                text: "Đêm rằm tháng Bảy. Kinh thành Huế giới nghiêm. Ngài nhận được một bức huyết thư từ Lãnh Cung do một bà vú già liều chết chuyển đến. Nội dung khiến ngài rụng rời:\n\n'Thục Phi đang mang long thai của Tiên Đế, nhưng bị Thái Hậu giam hãm, đêm nay sẽ bị ban rượu độc! Nếu đại nhân cứu được hoàng tử, sau này sẽ là đại công thần phò tá minh quân.'\n\nNgài cần đúng **500 Vàng** để mua chuộc ngự y và lính canh cổng thành để đưa Thục Phi trốn khỏi cung.\n\nHiện tại ngài có: <span class='highlight'>" + gameState.gold + " Vàng</span>.",
                 choices: [
-                    { text: "Dập đầu quỳ lạy, nhận lệnh vạch tội Tể Tướng.", next: "act4_start" },
-                    { text: "Lập lờ nước đôi, cảnh cáo Thái Hậu về phe Võ Tướng.", next: "act4_start" }
+                    { text: "A. Dốc hết 500 Vàng cứu Thục Phi và Hoàng tử (Yêu cầu >= 500 Vàng).", next: "act3_save_prince", condition: () => gameState.gold >= 500, action: () => { gameState.gold -= 500; gameState.flags.prince_saved = true; updateHUD(); } },
+                    { text: "B. Ngoảnh mặt làm ngơ, đem huyết thư dâng lên Lưỡng Cung Thái Hậu để lập công lớn.", next: "act3_betray_concubine", action: () => { gameState.power += 30; updateHUD(); } }
                 ]
+            },
+             "act3_save_prince": {
+                title: "ACT 3 (KẾT): CỨU GIÁ THÀNH CÔNG",
+                text: "Ngài liều mình dùng số vàng tích góp được hối lộ ngự y đánh tráo rượu độc. Trong đêm mưa gió, ngài đưa Thục Phi cải trang thành cung nữ trốn ra khỏi kinh thành, nương náu tại một ngôi chùa cổ ven sông.\n\nHoàng tử được an toàn. Ngài đã đặt cược số phận mình vào canh bạc lớn nhất: Phò tá vị vua tương lai.",
+                choices: [ { text: "Tiếp tục...", next: "act4_start" } ]
+            },
+            "act3_betray_concubine": {
+                title: "ACT 3 (KẾT): LẬP CÔNG VỚI THÁI HẬU",
+                text: "Ngài đem huyết thư tố cáo Thục Phi. Thái Hậu rất hài lòng, ban thưởng hậu hĩnh và thăng chức cho ngài lên chức Thượng Thư Bộ Lộ. Thục Phi và long thai bị xử tử. Ngài trở thành cánh tay đắc lực của phe Thái Hậu.",
+                action: () => { gameState.role = "Thượng Thư Bộ Lộ"; gameState.power += 50; updateHUD(); },
+                choices: [ { text: "Tiếp tục...", next: "act4_start" } ]
             },
             "act4_start": {
-                title: "ACT 4: CỬ TỬ CỤC (ĐÊM LẬT CỜ)",
-                text: "[HỆ THỐNG CẢNH BÁO: TẮT GIAO DIỆN CHỈ SỐ. MỌI QUYẾT ĐỊNH DỰA VÀO SUY LUẬN].\n\nKinh thành ngập trong biển lửa. Lê Văn Uy phá cổng thành, Thái Hậu tử thủ. Phu nhân {wifeName} ôm tay nải khóc ròng.\nCao Tấn Lộc lén đưa Kim Bài đòi cứu giá. Lê Văn Uy hứa chia đôi thiên hạ nếu mở cửa Hữu Môn.",
-                action: () => { gameState.flags.hud_disabled = true; updateHUD(); },
+                title: "ACT 4: ĐÊM ĐỔI NGÔI (ĐẠI BIẾN)",
+                text: "Tháng Chạp năm Gia Hưng thứ mười ba. Đại Đô Đốc Lê Văn Uy mang quân về kinh 'dẹp loạn', thực chất là đảo chính phế truất Thái Hậu và Tân Vương bù nhìn.\n\nQuân của Đô Đốc đã bao vây Hoàng Thành và phủ Thượng Thư của ngài. Lê Văn Uy gửi tối hậu thư:\n\n'Thức thời vi trang tuấn kiệt. Hãy mở cổng thành nghênh đón ta làm nhiếp chính, ta sẽ phong ngươi làm Tể Tướng. Bằng không, máu sẽ nhuộm đỏ phủ đệ nhà ngươi.'\n\nKinh thành đang hỗn loạn. Thái Hậu cũng bí mật sai người triệu ngài vào cung bảo vệ ấu chúa.",
                 choices: [
-                    { text: "A. Tin lời Thái Hậu, đem đại bác ra bảo vệ Hậu Cung.", next: "ending_bad2" },
-                    { text: "B. Tin lời Lê Văn Uy, mở cổng Hữu Môn đón Cấm Quân.", next: "ending_bad3" },
-                    { text: "C. (Lãnh Huyết): Kệ xác tất cả, đợi hai phe kiệt quệ rồi nã pháo san bằng Tử Cấm Thành!", next: "ending_check" }
+                    { text: "A. Mở cổng thành đầu hàng Lê Văn Uy, chấp nhận chức Tể Tướng.", next: "ending_traitor_pm" },
+                    { text: "B. Tử thủ đến cùng, chờ viện binh từ quân Cấm Vệ trung thành với Thái Hậu.", next: "act4_last_stand", condition: () => gameState.flags.prince_saved || gameState.power >= 50 },
+                    { text: "C. Nếu đã cứu Hoàng tử ở Act 3: Đưa Hoàng tử ra khỏi kinh thành, chạy về phương Nam chiêu binh phục quốc.", next: "ending_true_founder", condition: () => gameState.flags.prince_saved }
                 ]
             },
-            "ending_bad2": {
-                title: "GAME OVER: THỎ TỬ CẨU PHANH",
-                text: "Cứu giá thành công, nhưng sáng hôm sau Thái Hậu ban chén trà độc vì ngài... biết quá nhiều.",
-                choices: [{ text: "Luân hồi chơi lại", action: () => location.reload() }]
+            "act4_last_stand": {
+                title: "ACT 4 (CAO TRÀO): TỬ THỦ ĐẾN CÙNG",
+                text: "Ngài quyết định không khuất phục trước quân phiệt. Cùng với đội thân binh trung thành, ngài cố thủ tại phủ đệ. Cuộc chiến đẫm máu diễn ra suốt đêm.\n\nĐúng lúc quân Lê Văn Uy sắp phá được cổng chính, viện binh Cấm Vệ Quân bất ngờ ập đến đánh kẹp lưng quân phản loạn. Lê Văn Uy bị bắt sống. Ngài là vị cứu tinh của triều đình.",
+                choices: [ { text: "Xem kết cục...", next: "ending_savior_pm" } ]
             },
-            "ending_bad3": {
-                title: "GAME OVER: VẮT CHANH BỎ VỎ",
-                text: "Lê Văn Uy tràn vào và chém chết ngài ngay tại cửa vì sợ mưu kế của ngài.",
-                choices: [{ text: "Luân hồi chơi lại", action: () => location.reload() }]
-            },
-            "ending_check": {
-                title: "BÌNH MINH TRÊN ĐẾ CHẾ...",
-                text: "Đại bác nổ tung, quét sạch cả hai phe phản loạn và hậu cung. Kinh thành quỳ rạp dưới chân ngài. Ngài chọn con đường nào để cai trị?",
-                action: () => {
-                    let container = document.getElementById("choices-container");
-                    container.innerHTML = "";
-                    if (gameState.flags.prince_saved) {
-                        let btn = document.createElement("button");
-                        btn.className = "choice-btn";
-                        btn.innerText = "Tung Di chiếu, rước Hoàng tử từ {region} về lập Tân vương (TRUE ENDING)";
-                        btn.onclick = () => renderScene("ending_true");
-                        container.appendChild(btn);
-                    }
-                    let btn2 = document.createElement("button");
-                    btn2.className = "choice-btn";
-                    btn2.innerText = "Tự tay khoác áo Cửu Mãng Bào, xưng đế lập Tân Triều! (SECRET ENDING)";
-                    btn2.onclick = () => renderScene("ending_secret");
-                    container.appendChild(btn2);
-                },
-                choices: []
-            },
-            "ending_true": {
-                title: "TRUE ENDING: QUYỀN THẦN NHIẾP CHÍNH",
-                text: "Ngài tung Di chiếu rước Hoàng tử về, trở thành Nhiếp Chính Vương thao túng Đại Việt sau bức rèm. Gia tộc hưng thịnh vạn đại!",
-                choices: [{ text: "Hoàn thành thiên hạ (Chơi lại)", action: () => location.reload() }]
-            },
-            "ending_secret": {
-                title: "SECRET ENDING: VUA BÓNG TỐI",
-                text: "Trích sử sách: '{playerName} thuận thiên ứng mệnh, dấy binh dẹp loạn, trăm quan tôn lên làm Hoàng Đế, quốc hiệu Đại Hưng...' Ngài đã đứng trên đỉnh cao cô độc nhất.",
-                choices: [{ text: "Trị vì thiên hạ (Chơi lại)", action: () => location.reload() }]
-            }
-        };
-
-        function renderScene(sceneKey) {
-            gameState.currentScene = sceneKey;
-            let scene = storyData[sceneKey];
-            if (!scene) return;
-
-            if (scene.action) scene.action();
-            updateHUD();
-
-            let parsedTitle = scene.title ? parseText(scene.title) : "";
-            let parsedText = parseText(scene.text);
-            
-            let sceneHTML = `
-                <div class="scene-block">
-                    ${parsedTitle ? `<div class="scene-title">${parsedTitle}</div>` : ''}
-                    <div class="scene-text">${parsedText}</div>
-                </div>
-            `;
-            
-            document.getElementById("story-log").innerHTML += sceneHTML;
-            if(!sceneKey.includes("_dice")) {
-                gameState.historyLog.push(sceneHTML); 
-            }
-            
-            scrollToBottom();
-            renderChoices(sceneKey);
-        }
-
-        function renderChoices(sceneKey) {
-            let scene = storyData[sceneKey];
-            let choicesContainer = document.getElementById("choices-container");
-            choicesContainer.innerHTML = "";
-            
-            if(scene.choices && scene.choices.length > 0) {
-                scene.choices.forEach(choice => {
-                    if (choice.condition && !choice.condition()) return;
-
-                    let btn = document.createElement("button");
-                    btn.className = "choice-btn";
-                    btn.innerText = parseText(choice.text);
-                    btn.onclick = function() {
-                        if (choice.action) choice.action();
-                        if (choice.next) renderScene(choice.next);
-                    };
-                    choicesContainer.appendChild(btn);
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+            "ending_traitor_pm": {
+                title: "KẾT CỤC: TỂ TƯỚNG BÁN NƯỚC (BAD ENDING)",
+                text: "Ngài mở cổng thành
