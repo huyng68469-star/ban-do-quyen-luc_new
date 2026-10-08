@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bản Đồ Quyền Lực - V2.0 Đại Nội Kỷ Nguyên</title>
+    <title>Bản Đồ Quyền Lực - V2.1 Act 1 & Act 2</title>
     <style>
         :root {
             --bg-color: #161210;
@@ -209,7 +209,6 @@
             border-left: 3px solid var(--accent-red);
         }
 
-        /* Xúc xắc */
         .dice-box {
             text-align: center;
             margin: 20px 0;
@@ -225,12 +224,6 @@
         }
 
         .hidden { display: none !important; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Screens */
         .screen-layout {
             text-align: center;
             padding: 50px 40px;
@@ -310,21 +303,18 @@
             </div>
         </div>
 
-        <!-- POPUP CẨM NANG (GLOSSARY MODAL) -->
+        <!-- POPUP CẨM NANG -->
         <div id="modal-overlay" class="hidden">
             <div id="modal-content">
                 <div class="modal-title">CẨM NANG BẢN ĐỒ QUYỀN LỰC</div>
                 
                 <h3 style="color: #4a0000;">I. Hệ thống Chỉ số</h3>
-                <div class="term-box"><b>🪙 Ngân Khố (Vàng):</b> Dùng để hối lộ, nuôi tai mắt, mua mạng sống. Hết Vàng đồng nghĩa với việc bị trói tay.</div>
-                <div class="term-box"><b>📜 Uy Quyền:</b> Sự nể sợ của bá quan. Uy quyền cao cho phép đe dọa kẻ thù mà không tốn Vàng. Đi sai nước cờ sẽ mất Uy.</div>
-                <div class="term-box"><b>👑 Chức Vụ:</b> Thăng tiến từ Lang Trung (Ngũ Phẩm) lên Thị Lang, Thượng Thư, Tể Tướng.</div>
-                <div class="term-box"><b>🌑 Nghiệp Báo (Karma) - Ẩn:</b> Những quyết định tàn nhẫn sẽ âm thầm tích tụ Nghiệp, quyết định việc ngài bị ám sát hay phản bội ở nửa sau trò chơi.</div>
+                <div class="term-box"><b>🪙 Ngân Khố (Vàng):</b> Dùng để hối lộ, nuôi tai mắt, mua mạng sống.</div>
+                <div class="term-box"><b>📜 Uy Quyền:</b> Sự nể sợ của bá quan. Uy quyền cao cho phép đe dọa kẻ thù mà không tốn Vàng.</div>
+                <div class="term-box"><b>👑 Chức Vụ:</b> Thăng tiến từ Lang Trung lên Thị Lang, Thượng Thư, Tể Tướng.</div>
 
-                <h3 style="color: #4a0000;">II. Các Thế Lực Lục Bộ</h3>
-                <div class="term-box"><b>Hoạn Quan (Cao Tấn Lộc):</b> Nắm tình báo, nham hiểm, mưu mô. Phương ngữ Bắc Hà.</div>
-                <div class="term-box"><b>Võ Tướng (Lê Văn Uy):</b> Nắm binh quyền Cấm Vệ Quân, thô lỗ, bạo lực. Phương ngữ Nam Bộ.</div>
-                <div class="term-box"><b>Hậu Cung (Lưỡng Cung Thái Hậu):</b> Quyền lực tối thượng sau rèm, độc ác, thao túng. Phương ngữ Huế.</div>
+                <h3 style="color: #4a0000;">II. Manh mối Act 2 (Ghi nhớ để suy luận)</h3>
+                <div class="term-box"><b>Vụ trộm kho vàng Bộ Hộ:</b> Kẻ cờ bạc (Trần Công), Kẻ dính bùn đỏ (Lê Tín), Kẻ nợ ân tình thái giám (Phạm Đăng). Hãy chọn cho đúng người!</div>
 
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="sys-btn sleeve-btn" style="font-size: 18px; padding: 10px 30px;" onclick="closeGlossary()">BỎ CẨM NANG VÀO TAY ÁO</button>
@@ -344,20 +334,17 @@
             karma: 0, 
             role: "Lại Bộ Lang Trung",
             currentScene: "act1_start",
-            flags: { child_born: false, has_son: false },
+            flags: { child_born: false, has_son: false, prince_saved: false },
             historyLog: [] 
         };
 
-        let glossaryContext = ""; // 'intro' hoặc 'game'
+        let glossaryContext = "";
+        const SAVE_SLOT = "banDoQuyenLuc_SaveData_V2";
 
-        const SAVE_SLOT = "banDoQuyenLuc_SaveData";
-
-        // Navigation
         function showIntro() {
             let nameInput = document.getElementById("player-name").value.trim();
             if (nameInput !== "") gameState.playerName = nameInput;
             gameState.region = document.getElementById("player-region").value;
-
             document.getElementById("creation-screen").classList.add("hidden");
             document.getElementById("intro-screen").classList.remove("hidden");
         }
@@ -369,7 +356,6 @@
             renderScene("act1_start");
         }
 
-        // Modal Functions
         function openGlossary(context) {
             glossaryContext = context;
             document.getElementById("modal-overlay").classList.remove("hidden");
@@ -382,10 +368,9 @@
             }
         }
 
-        // Save / Load
         function saveGame() {
             localStorage.setItem(SAVE_SLOT, JSON.stringify(gameState));
-            alert("Tiến trình đã được lưu giấu an toàn!");
+            alert("Tiến trình đã được cất giấu an toàn!");
         }
 
         function loadGame() {
@@ -395,12 +380,10 @@
                 document.getElementById("creation-screen").classList.add("hidden");
                 document.getElementById("intro-screen").classList.add("hidden");
                 document.getElementById("game-screen").classList.remove("hidden");
-                
                 document.getElementById("story-log").innerHTML = ""; 
                 gameState.historyLog.forEach(htmlBlock => {
                     document.getElementById("story-log").innerHTML += htmlBlock;
                 });
-                
                 updateHUD();
                 renderChoices(gameState.currentScene);
                 scrollToBottom();
@@ -427,7 +410,6 @@
             return parsed.normalize('NFC'); 
         }
 
-        // Dice Roll Logic
         function rollDice() {
             let resultBox = document.getElementById("dice-result");
             let btn = document.getElementById("roll-btn");
@@ -446,20 +428,21 @@
                 if (roll >= 4) {
                     gameState.flags.has_son = true;
                     gameState.power += 30;
-                    resultBox.innerHTML = `🎲 Quẻ thượng thư: <b>Sinh hạ Đích tôn!</b><br><span style='color:green'>Mẫu tử bình an, uy quyền gia tộc tăng vọt (+30 Uy quyền). Ngài đặt tên con là Minh Kiệt.</span>`;
+                    resultBox.innerHTML = `🎲 Quẻ thượng thư: <b>Sinh hạ Đích tôn Minh Kiệt!</b><br><span style='color:green'>Uy quyền gia tộc tăng vọt (+30 Uy quyền).</span>`;
                 } else {
                     gameState.gold += 100;
-                    resultBox.innerHTML = `🎲 Quẻ bình hòa: <b>Sinh hạ Ái nữ!</b><br><span style='color:green'>Dù không có người nối dõi, nhưng bá quan văn võ kéo đến tặng lễ vật nườm nượp (+100 Vàng).</span>`;
+                    resultBox.innerHTML = `🎲 Quẻ bình hòa: <b>Sinh hạ Ái nữ!</b><br><span style='color:green'>Bá quan kéo đến tặng lễ vật nườm nượp (+100 Vàng).</span>`;
                 }
                 updateHUD();
-                renderChoices("act1_hauvien_post"); // Hiển thị nút đi tiếp
+                renderChoices("act1_hauvien_post");
             }, 1500);
         }
 
+        // HỆ THỐNG KỊCH BẢN CHÍNH THỨC (ACT 1 & ACT 2)
         const storyData = {
             "act1_start": {
                 title: "ACT 1: ĐÊM MƯA TỬ CẤM THÀNH",
-                text: "Mưa rào quất xối xả. Khắp Tử Cấm Thành nặc mùi tử khí quyện với hương trầm. Tiên Đế vừa băng hà.\n\nNgài quỳ rạp bên ngoài rèm. Đột nhiên, một cuộn lụa vàng cháy dở lăn từ chậu than ra sát gối ngài. Di chiếu truyền ngôi!\nTổng quản Cao Tấn Lộc giẫm mạnh lên vạt áo ngài, rít lên:\n<span class='dialogue'>'Khôn hồn thì đưa cho tạp gia, bằng không mai cả họ nhà ngài ra bãi tha ma nhé!'</span>",
+                text: "Mưa rào quất xối xả. Tiên Đế băng hà. Khắp Tử Cấm Thành nặc mùi tử khí.\nNgài quỳ rạp bên ngoài rèm. Di chiếu truyền ngôi lăn từ chậu than ra sát gối ngài!\nTổng quản Cao Tấn Lộc giẫm mạnh lên vạt áo ngài, rít lên:\n<span class='dialogue'>'Khôn hồn thì đưa cho tạp gia, bằng không mai cả họ nhà ngài ra bãi tha ma nhé!'</span>",
                 choices: [
                     { text: "Lén giấu Di chiếu, dúi thỏi vàng 100 lạng vào tay hắn.", next: "act1_survive" },
                     { text: "Vờ luống cuống, gạt Di chiếu vào chậu than cho cháy rụi.", next: "act1_death" }
@@ -467,34 +450,63 @@
             },
             "act1_death": {
                 title: "TỬ CỤC: TRO TÀN LỊCH SỬ",
-                text: "Di chiếu mất. Ngài bị Cao Tấn Lộc hô hoán Cấm vệ lôi ra chém đầu ngay lập tức.",
-                choices: [{ text: "Bắt đầu lại kiếp này...", action: () => location.reload() }]
+                text: "Di chiếu mất. Ngài bị Cấm vệ lôi ra chém đầu ngay lập tức.",
+                choices: [{ text: "Bắt đầu lại...", action: () => location.reload() }]
             },
             "act1_survive": {
                 title: "ACT 1.5: ĐÊM Ở HẬU VIỆN",
-                text: "Cao Tấn Lộc nắn thỏi vàng, lướt đi. Ngài sống sót rời khỏi hoàng cung.\n\nTrở về phủ đệ, mồ hôi lạnh ướt đẫm quan phục. Tiếng nha hoàn hét lên từ khuê phòng phu nhân {wifeName}: 'Phu nhân vỡ ối rồi!'. Ngài đứng chắp tay ngoài hiên, lẩm nhẩm cầu khấn tổ tiên {region} phù hộ độ trì. Chút máu mủ này sẽ là điểm tựa duy nhất của ngài giữa chốn quan trường chông chênh.",
-                action: () => { gameState.gold -= 100; },
+                text: "Sống sót qua đêm đẫm máu. Trở về phủ, nha hoàn hét lên: 'Phu nhân {wifeName} vỡ ối rồi!'\nNgài đứng chắp tay ngoài hiên, cầu khấn tổ tiên phù hộ độ trì.",
+                action: () => { gameState.gold -= 100; updateHUD(); },
                 choices: [
-                    { text: "Lấy mai rùa ra gieo quẻ xem sinh nam hay nữ (Đổ xúc xắc)", next: "act1_hauvien_dice" }
+                    { text: "Gieo quẻ mai rùa xem sinh nam hay nữ (Đổ xúc xắc)", next: "act1_hauvien_dice" }
                 ]
             },
             "act1_hauvien_dice": {
                 title: "THỬ VẬN MỆNH CỐT NHỤC",
-                text: "Ngài lấy đồng xu và mai rùa ra gieo quẻ. (Quẻ 4,5,6: Sinh con trai / Quẻ 1,2,3: Sinh con gái).\n\n<div class='dice-box'><button id='roll-btn' class='sys-btn sleeve-btn' style='font-size:18px; padding: 10px 20px;' onclick='rollDice()'>🎲 Gieo Quẻ Xúc Xắc</button><div id='dice-result'></div></div>",
-                choices: [] // Bị ẩn cho đến khi đổ xúc xắc xong
+                text: "Gieo quẻ định mệnh cho đứa con đầu lòng.\n\n<div class='dice-box'><button id='roll-btn' class='sys-btn sleeve-btn' style='font-size:18px; padding: 10px 20px;' onclick='rollDice()'>🎲 Gieo Quẻ Xúc Xắc</button><div id='dice-result'></div></div>",
+                choices: []
             },
             "act1_hauvien_post": {
-                text: "Tiếng trẻ con khóc ré lên xé toạc màn đêm. Sinh linh bé nhỏ này không biết rằng cha nó vừa giấu một tờ Di chiếu định đoạt cả thiên hạ trong ngực áo.",
+                text: "Tiếng trẻ con khóc ré lên xé toạc màn đêm. Mầm mống của quyền lực đã ra đời.",
                 choices: [
-                    { text: "Bước sang ngày hôm sau... (Chuyển tới Act 2)", next: "act2_start" }
+                    { text: "Bước sang Act 2: Sương Mù Thâm Cung", next: "act2_start" }
                 ]
             },
             "act2_start": {
-                title: "ACT 2: SƯƠNG MÙ THÂM CUNG",
-                text: "Quyền lực càng lớn, bẫy rập càng nhiều. Cánh cổng Act 2 chính thức mở ra...",
+                title: "ACT 2: KẺ PHẢN TRẮC BỘ HỘ",
+                text: "Bằng tiền bạc và mưu mô, ngài đã thăng lên chức **Thị Lang Bộ Lễ**. Nhưng đêm nay, lật kiểm tra cuốn sổ bìa đen, ngài phát hiện **300 lạng vàng đã bốc hơi** khỏi mật thất.\n\nBa tên thuộc hạ tâm phúc đang quỳ gập gối:\n1. Trần Công: Quản lý sổ sách, mê cờ bạc nhưng thề đang chịu tang cha.\n2. Lê Tín: Do Tể Tướng tiến cử, áo dính vệt bùn đỏ niêm phong rương vàng.\n3. Phạm Đăng: Theo ngài từ Quảng Nam, từng vay tiền tiểu thái giám Thái Y Viện mua nhân sâm cho mẹ.\n\nNgài rút nhuyễn kiếm, kề vào cổ ai?",
                 action: () => { gameState.role = "Thị Lang Bộ Lễ"; updateHUD(); },
                 choices: [
-                    { text: "Tạm dừng tại đây, bỏ cẩm nang vào áo và Lưu game.", action: () => saveGame() }
+                    { text: "Chém Trần Công (Kẻ cờ bạc).", next: "act2_fail" },
+                    { text: "Chém Lê Tín (Kẻ dính bùn đỏ).", next: "act2_fail" },
+                    { text: "Chém Phạm Đăng (Kẻ nợ ân tình Thái Giám).", next: "act2_success" }
+                ]
+            },
+            "act2_fail": {
+                title: "SAI LẦM CHÍ MẠNG",
+                text: "Ngài chém nhầm người! Kẻ phản bội thực sự nhân lúc hỗn loạn đã tẩu tán số vàng. Ngân khố của ngài về 0 Vàng!",
+                action: () => { gameState.gold = 0; updateHUD(); },
+                choices: [{ text: "Cắn răng bước tiếp vào thâm cung...", next: "act2_lainhcung" }]
+            },
+            "act2_success": {
+                title: "THU HỒI TÀI SẢN",
+                text: "Chuẩn xác! Phạm Đăng bị Tổng quản Cao Tấn Lộc uy hiếp ép mở kho. Ngài chém hắn, thu hồi lại toàn bộ Vàng và nhận ra Hoạn Quan đã bắt đầu nhắm vào mình.",
+                action: () => { gameState.power += 15; updateHUD(); },
+                choices: [{ text: "Đi tiếp vào thâm cung...", next: "act2_lainhcung" }]
+            },
+            "act2_lainhcung": {
+                title: "ACT 2: HUYẾT THƯ LÃNH CUNG",
+                text: "Bà vú già mang đến huyết thư từ Thục Phi trong Lãnh Cung: Nàng đang mang giọt máu của Tiên Đế, đêm mai sẽ bị Thái Hậu ban rượu độc.\n\nNgài cần chi đúng **400 Vàng** để thuê thuyền mành đưa nàng trốn về {region}.",
+                choices: [
+                    { text: "A. Chi 400 Vàng, lén lút cứu Thục Phi (Cần >= 400 Vàng).", next: "act3_start", condition: () => gameState.gold >= 400, action: () => { gameState.gold -= 400; gameState.flags.prince_saved = true; updateHUD(); } },
+                    { text: "B. Dâng huyết thư cho Thái Hậu để lấy lòng Hậu Cung.", next: "act3_start" }
+                ]
+            },
+            "act3_start": {
+                title: "ACT 3: TÁCH TRÀ SAU RÈM CHÂU",
+                text: "Năm Gia Hưng thứ tư. Lưỡng Cung Hoàng Thái Hậu gọi ngài vào cung Diên Thọ, cất giọng rặt âm sắc nhã nhặn mà tàn độc của người gốc Huế:\n\n<span class='dialogue'>'{playerName} nì... Mi nghe rõ đây. Lão Tể Tướng đang xúi bậy bá quan. Sáng mai mi tự tay thảo tờ sớ vạch tội phản nghịch của lão cho Ai gia. Mần được, ấn Tể Tướng là của mi. Mần không xong, bãi tha ma Cồn Tùng có sẵn chỗ cho họ Ngô nhà mi!'</span>\n\n(Phần tiếp theo của Act 3 và Act 4 đang chờ Đại nhân viết tiếp vào lịch sử... Tạm thời hãy Lưu game để bảo toàn tính mạng!)",
+                choices: [
+                    { text: "Lưu tiến trình và khép lại chương này.", action: () => saveGame() }
                 ]
             }
         };
@@ -533,6 +545,8 @@
             
             if(scene.choices && scene.choices.length > 0) {
                 scene.choices.forEach(choice => {
+                    if (choice.condition && !choice.condition()) return;
+
                     let btn = document.createElement("button");
                     btn.className = "choice-btn";
                     btn.innerText = parseText(choice.text);
